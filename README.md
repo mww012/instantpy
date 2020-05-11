@@ -6,7 +6,7 @@ This module provides a Python 3 interface for the Aruba Instant 8.6 REST API.
 
 For full documentation, see [here](https://support.hpe.com/hpesc/public/docDisplay?docId=a00092466en_us).
 
-The REST API is divided into three secions.  **Monitoring**, **Action**, and **Configuration**.
+The REST API is divided into three secions.  **Monitoring**, **Action**, and **Configuration**.  Details on each section are below.  Logging in and out is handled by the ```login()``` and ```logout()``` methods.  Logging in has a decorator method that will handle logging in if needed.  You will still need to handle logging out.  *See examples below.*
 
 ## Monitoring
 The monitoring endpoints of the API does is used for, obviously, monitoring.  It is used to gather state, statistics, and logs from master, slave, or standalone Instant APs.  The architecture of this portion of the API is very similar to the cli output of "show" commands.  The currently supported commands are ```show clients``` and ```show aps```.  More will be added shortly.  There is also a generic ```show command``` method that will accept any CLI show commands and return unstructured text.
@@ -31,6 +31,8 @@ Generic Show Command | show_cmd() | Returns unstructured output text from any "s
 
 ## Configuration
 Configuration endpoints are used to configure an Instant Virtual Controller.  See table below for supported endpoints.
+
+When intantiating an instance of InstantVC() the 'templates' directory defaults to the folder in the project.  It is recommended that you create your own templates directory and use this one for reference.
 
     Note: Due to the complexity of the profiles created using these endpoints, 
     all Configuration methods require a json file as an argument.
@@ -63,3 +65,63 @@ AP Reboot | ap_reboot() | Initiate a reboot of a single or all APs in the Instan
 Wired Port Profile | wired_port() | Configure a wired port profile for use by the Instant cluster.
 Wired Profile Map | wired_profile_map() | Configure a wired profile to port mapping for use by the Instant cluster.
 Management User | mgmt_user() | onfigure management users on the virtual controller.
+
+
+## Examples:
+Login leveraging the @autologin decorator - In this scenario the decorator will login for you when the first API call is made.
+```
+import instantpy
+
+vc = instant.InstantVC('user', 'password', 'VC IP')
+
+result = vc.clients()
+...
+vc.logout()
+```
+
+### Monitoring Endpoint Example
+List connected clients
+```
+import json
+import instantpy
+
+vc = instantpy.InstantVC('user', 'password', 'VC IP')
+result = vc.clients()
+print(json.dumps(result, indent=4))
+vc.logout()
+```
+
+Arbitrary 'show' command
+```
+import json
+import instantpy
+
+vc = instantpy.InstantVC('user', 'password', 'VC IP')
+result = vc.show_command(command="show swarm state")
+print(result)
+vc.logout()
+```
+
+### Action Endpoint Example
+Set Hostname of a specfic AP
+```
+import json
+import instantpy
+
+vc = instantpy.InstantVC('user', 'password', 'VC IP')
+result = vc.hostname(name="testname", iap_ip="1.2.3.4")
+print(json.dumps(result, indent=4))
+vc.logout()
+```
+
+### Configuration Endpoint Example
+Set RADIUS Authentication Server
+```
+import json
+import instantpy
+
+vc = instantpy.InstantVC('user', 'password', 'VC IP')
+result = vc.auth_server(template='auth_server_template.json')
+print(json.dumps(result, indent=4))
+vc.logout()
+```
