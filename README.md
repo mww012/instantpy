@@ -13,7 +13,8 @@ The monitoring endpoints of the API does is used for, obviously, monitoring.  It
 
 The architecture of this portion of the API is very similar to the cli output of "show" commands.  The currently supported commands are ```show clients``` and ```show aps```.  More will be added shortly.
 
-    NOTE: The response from the API is currently unstructred text and requires parsing with RegEx.  This lends itself to breaking easily between versions.  My current testing has been against 8.6.
+    NOTE: The response from the API is currently unstructred text and requires parsing with RegEx.  
+    This lends itself to breaking easily between versions.  My current testing has been against 8.6.
 
 ## Action
 The action endpoints are used for configuring AP specific settings.  See below for supported endpoints.
@@ -31,9 +32,12 @@ Generic Show Command | show_cmd() | Returns unstructured output text from any "s
 ## Configuration
 Configuration endpoints are used to configure an Instant Virtual Controller.  See table below for supported endpoints.
 
-    Note: Due to the complexity of the profiles created using these endpoints, all Configuration methods require a json file as an argument.
+    Note: Due to the complexity of the profiles created using these endpoints, 
+    all Configuration methods require a json file as an argument.
 
-    There are examples in the "templates" directory.  These example templates were taken directly from the Aruba Instant REST API document referenced above.
+    There are examples in the "templates" directory.  
+    These example templates were taken directly from the 
+    Aruba Instant REST API document referenced above.
 
 Endpoint | Method | Description
 ---|---|---
