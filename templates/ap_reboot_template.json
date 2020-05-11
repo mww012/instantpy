@@ -1,0 +1,6 @@
+{
+    "iap_ip_addr": "1.2.3.4",
+    "reboot-info": {
+        "target": "single"
+    }
+}

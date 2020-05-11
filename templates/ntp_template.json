@@ -1,0 +1,6 @@
+{
+    "ntp-server": {
+        "action": "create",
+        "ntp_server_ip": "pool.ntp.org"
+    }
+}

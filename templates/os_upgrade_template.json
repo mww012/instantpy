@@ -1,0 +1,13 @@
+{
+    "upgrade-info": {
+        "auto-reboot": "yes",
+        "Centaurus-url": "ftp://1.2.3.4/ArubaInstant_Centaurus_8.5.0.0_69414",
+        "Lupus-url": "ftp://1.2.3.4/ArubaInstant_Lupusx_8.5.0.0_69414",
+        "Hercules-url": "ftp://1.2.3.4/ArubaInstant_Hercules_8.5.0.0_69414",
+        "Vela-url": "ftp://1.2.3.4/ArubaInstant_Vela_8.5.0.0_69414",
+        "Draco-url": "ftp://1.2.3.4/ArubaInstant_Draco_8.5.0.0_69414",
+        "Ursa-url": "ftp://1.2.3.4/ArubaInstant_Ursa_8.5.0.0_69414",
+        "Aries-url": "ftp://1.2.3.4/ArubaInstant_Aries_8.5.0.0_69414",
+        "Scorpio-url": "ftp://1.2.3.4/ArubaInstant_Scorpio_8.5.0.0_69414"
+    }
+}

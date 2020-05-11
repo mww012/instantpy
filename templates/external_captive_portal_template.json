@@ -1,0 +1,23 @@
+{
+    "external_captive_portal_profile_info": {
+        "action": "create",
+        "name": "default",
+        "auto-whitelist-disable": "enable",
+        "https": "enable",
+        "server-fail-through": "enable",
+        "server-offload": "enable",
+        "switch-ip": "disable",
+        "redirect-url": {
+            "action": "create",
+            "value": "http://redirect.site.com/wifi/"
+        },
+        "out-of-service-page": {
+            "action": "create",
+            "value": "<a href='http://www.123.com'>123.com</a> "
+        },
+        "url": "/aruba.php",
+        "server": "localhost",
+        "auth-text": "Authenticated",
+        "port": 80
+    }
+}

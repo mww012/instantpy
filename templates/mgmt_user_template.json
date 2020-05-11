@@ -1,0 +1,8 @@
+{
+    "mgmt-user": {
+        "action": "create",
+        "username": "abcdefg",
+        "cleartext_password": "aruba23456",
+        "usertype": "read-only"
+    }
+}

@@ -1,0 +1,40 @@
+{
+    "acl-config": {
+        "action": "create",
+        "acl_name": "test1234",
+        "bandwidth_limit": {
+            "upstream": {
+                "action": "enable",
+                "per-user": "yes",
+                "limit": 20
+            },
+            "downstream": {
+                "action": "enable",
+                "per-user": "no",
+                "limit": 30
+            }
+        },
+        "captive-portal": {
+            "action": "enable",
+            "type": "external",
+            "external_profile_name": "abcdefgh"
+        },
+        "vlan-info": {
+            "set": "yes",
+            "vlan": "103"
+        },
+        "rules": [
+            {
+                "action": "create",
+                "service-type": "protocol",
+                "protocol-info": {
+                    "protocol": "udp",
+                    "sport": "67",
+                    "dport": "68"
+                },
+                "destination-type": "all-destinations",
+                "rule-action": "permit"
+            }
+        ]
+    }
+}

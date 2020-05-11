@@ -1,0 +1,54 @@
+{
+    "ssid-profile": {
+        "action": "create",
+        "ssid-profile": "AA-Cabin123",
+        "essid": {
+            "action": "create",
+            "value": "AA-Cabin123"
+        },
+        "type": "employee",
+        "opmode": "wpa2-psk-aes",
+        "wpa-passphrase": "abcefgg@123",
+        "vlan": {
+            "action": "create",
+            "value": "102"
+        },
+        "rf-band": "5.0",
+        "enable": "yes",
+        "dtim-period": {
+            "action": "create",
+            "value": 1
+        },
+        "broadcast-filter": {
+            "action": "create",
+            "value": "arp"
+        },
+        "g-min-tx-rate": "1",
+        "a-min-tx-rate": "6",
+        "a-basic-rates": {
+            "action": "create",
+            "value": "6,9"
+        },
+        "g-basic-rates": {
+            "action": "create",
+            "value": "11"
+        },
+        "dmo-channel-utilization-threshold": 90,
+        "local-probe-req-thresh": 0,
+        "max-clients-threshold": 64,
+        "dot11k": "enable",
+        "dot11r": "enable",
+        "dot11v": "enable",
+        "mdid": {
+            "action": "create",
+            "value": 65535
+        },
+        "auth-server": {
+            "action": "create",
+            "value": "auth_server"
+        },
+        "deny-inter-user-bridging": "enable",
+        "deny-local-routing": "enable",
+        "max-authentication-failures": 0
+    }
+}

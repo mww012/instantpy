@@ -1,0 +1,7 @@
+{
+    "syslog-level": {
+        "action": "create",
+        "level": "Warning",
+        "component": "system"
+    }
+}

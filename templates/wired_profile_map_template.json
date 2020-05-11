@@ -1,0 +1,8 @@
+{
+    "wired-profile-map": {
+        "enet0-port-profile": {
+            "action": "create",
+            "value": "wired123"
+        }
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "clock_info": {
+        "timezone": {
+            "action": "create",
+            "name": "Coordinated-Universal-Time",
+            "hour_offset": 0,
+            "minute_offset": 0
+        }
+    }
+}

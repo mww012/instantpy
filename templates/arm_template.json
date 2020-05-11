@@ -1,0 +1,100 @@
+{
+    "arm": {
+        "action": "create",
+        "min-tx-power": {
+            "action": "create",
+            "power": "18"
+        },
+        "max-tx-power": {
+            "action": "create",
+            "power": "127"
+        },
+        "client-aware": "enable",
+        "80mhz-support": "enable",
+        "scanning": "disable",
+        "wide-bands": "5ghz",
+        "a-channels": {
+            "action": "create",
+            "a-channel": "44"
+        },
+        "air-time-fairness-mode": {
+            "action": "create",
+            "value": "fair-access"
+        },
+        "band-steering-mode": {
+            "action": "create",
+            "value": "balance-bands"
+        },
+        "client-match": {
+            "enable": "no",
+            "bad-snr": {
+                "action": "enable",
+                "value": 3
+            },
+            "calc-threshold": {
+                "action": "enable",
+                "value": 3
+            },
+            "slb-mode": {
+                "action": "enable",
+                "value": 1
+            },
+            "max-request": {
+                "action": "enable",
+                "value": 3
+            },
+            "sta-entry-age": {
+                "action": "enable",
+                "value": 30
+            },
+            "restriction-timeout": {
+                "action": "enable",
+                "value": 3
+            },
+            "debug": {
+                "action": "enable",
+                "value": 2
+            },
+            "client-thresh": {
+                "action": "enable",
+                "value": 3
+            },
+            "report-interval": {
+                "action": "enable",
+                "value": 3
+            },
+            "vbr-entry-age": {
+                "action": "enable",
+                "value": 39
+            },
+            "snr-thresh": {
+                "action": "enable",
+                "value": 3
+            },
+            "key": {
+                "action": "enable",
+                "value": "2147483646"
+            },
+            "max-adoption": {
+                "action": "enable",
+                "value": 3
+            },
+            "holdtime": {
+                "action": "enable",
+                "value": 3
+            },
+            "good-snr": {
+                "action": "enable",
+                "value": 3
+            },
+            "calc-interval": {
+                "action": "enable",
+                "value": 3
+            },
+            "nb-matching": {
+                "action": "enable",
+                "value": 30
+            }
+        }
+    }
+}

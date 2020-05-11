@@ -1,0 +1,37 @@
+{
+    "radio-profile-11a": {
+        "action": "create",
+        "11a-radio-profile-name": "dot11a-radio",
+        "40MHZ-intolerance": "enable",
+        "beacon-interval": 500,
+        "csd-override": "enable",
+        "cell-size-reduction": {
+            "action": "create",
+            "value": 5
+        },
+        "csa-count": 1,
+        "max-distance": 2,
+        "max-tx-power": 18,
+        "min-tx-power": 12,
+        "legacy-mode": "disable",
+        "disable-arm-wids-functions": {
+            "action": "create",
+            "value": "dynamic"
+        },
+        "dot11h": "enable",
+        "free-channel-index": {
+            "action": "create",
+            "value": 40
+        },
+        "honor-40MHZ-intolerance-disable": "enable",
+        "interference-immunity": 5,
+        "smart-antenna": "enable",
+        "spectrum-band": "5ghz-middle",
+        "very-high-throughput-disable": "enable",
+        "spectrum-monitor": "enable",
+        "zone": {
+            "action": "create",
+            "value": "radio-outdoor"
+        }
+    }
+}

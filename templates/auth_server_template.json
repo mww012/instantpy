@@ -1,0 +1,33 @@
+{
+    "auth-server-config": {
+        "action": "create",
+        "auth-profile-name": "auth-server",
+        "port": 1812,
+        "acctport": {
+            "action": "create",
+            "value": 1813
+        },
+        "deadtime": {
+            "action": "create",
+            "value": 360
+        },
+        "timeout": {
+            "action": "create",
+            "value": 60
+        },
+        "retry-count": {
+            "action": "create",
+            "value": 4
+        },
+        "ip": "1.2.3.4",
+        "key": "itsabug",
+        "nas-id": {
+            "action": "create",
+            "value": "abcdefgh"
+        },
+        "nas-ip": {
+            "action": "create",
+            "value": "1.2.3.0"
+        }
+    }
+}

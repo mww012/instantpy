@@ -1,0 +1,18 @@
+{
+    "wired-port-profile": {
+        "profile-name": "wired12345678",
+        "action": "create",
+        "switchport-mode": "access",
+        "native-vlan": "guest",
+        "type": "guest",
+        "shutdown": "disable",
+        "uplink-enable": "enable",
+        "captive-portal": {
+            "external": "yes",
+            "profile": "yes",
+            "profile_name": "abcdefgh",
+            "exclude-uplink": "yes",
+            "exclude-uplink-types": "Ethernet"
+        }
+    }
+}

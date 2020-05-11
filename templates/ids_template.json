@@ -1,0 +1,76 @@
+{
+    "ids-config": {
+        "action": "enable",
+        "infrastructure-detection": {
+            "level": "custom",
+            "custom-policies": {
+                "detect-ap-spoofing": "enable",
+                "detect-windows-bridge": "enable",
+                "signature-deauth-broadcast": "enable",
+                "signature-deassociation-broadcast": "enable",
+                "detect-chan-based-mitm": "enable",
+                "detect-adhoc-using-valid-ssid": "enable",
+                "detect-malformed-large-duration": "enable",
+                "detect-ap-impersonation": "enable",
+                "detect-adhoc-network": "enable",
+                "detect-valid-ssid-misuse": "enable",
+                "detect-wireless-bridge": "enable",
+                "detect-ht-40mhz-intolerance": "enable",
+                "detect-ht-greenfield": "enable",
+                "detect-ap-flood": "enable",
+                "detect-client-flood": "enable",
+                "detect-bad-wep": "enable",
+                "detect-cts-rate-anomaly": "enable",
+                "detect-rts-rate-anomaly": "enable",
+                "detect-invalid-addresscombination": "enable",
+                "detect-malformed-htie": "enable",
+                "detect-malformed-assoc-req": "enable",
+                "detect-malformed-frame-auth": "enable",
+                "detect-overflow-ie": "enable",
+                "detect-overflow-eapol-key": "enable",
+                "detect-beacon-wrong-channel": "enable",
+                "detect-invalid-mac-oui": "enable"
+            }
+        },
+        "client-detection": {
+            "level": "custom",
+            "custom-policies": {
+                "detect-valid-clientmisassociation": "disable",
+                "detect-disconnect-sta": "disable",
+                "detect-omerta-attack": "disable",
+                "detect-fatajack": "disable",
+                "detect-block-ack-attack": "disable",
+                "detect-hotspotter-attack": "disable",
+                "detect-unencrypted-valid": "disable",
+                "detect-power-save-dos-attack": "disable",
+                "detect-eap-rate-anomaly": "disable",
+                "detect-rate-anomalies": "disable",
+                "detect-chopchop-attack": "disable",
+                "detect-tkip-replay-attack": "disable",
+                "signature-airjack": "disable",
+                "signature-asleap": "disable",
+                "detect-wpa-ft-attack": "disable"
+            }
+        },
+        "infrastructure-protection": {
+            "level": "custom",
+            "custom-policies": {
+                "protect-ssid": "disable",
+                "rogue-containment": "disable",
+                "protect-adhoc-network": "disable",
+                "protect-ap-impersonation": "disable"
+            }
+        },
+        "client-protection": {
+            "level": "custom",
+            "custom-policies": {
+                "protect-valid-sta": "disable",
+                "protect-windows-bridge": "disable"
+            }
+        },
+        "wired-containment": "disable",
+        "wired-containment-ap-adj-mac": "disable",
+        "wired-containment-susp-l3-rogue": "disable",
+        "wireless-containment": "deauth-only"
+    }
+}
