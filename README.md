@@ -2,16 +2,16 @@
 
 This module provides a Python 3 interface for the Aruba Instant 8.6 REST API.
 
-
+**Please understand this project is a WIP.  I'd also really appreciate some help testing.  My Instant cluster is my production wifi at home.  I can't thoroughly test certain calls to the API (specifically in the Configuration portion) because breaking the wifi at home would result in an unhappy household.**
 
 For full documentation, see [here](https://support.hpe.com/hpesc/public/docDisplay?docId=a00092466en_us).
 
 The REST API is divided into three secions.  **Monitoring**, **Action**, and **Configuration**.
 
 ## Monitoring
-The monitoring endpoints of the API does is used for, obviously, monitoring.  It is used to gather state, statistics, and logs from master, slave, or standalone Instant APs.
+The monitoring endpoints of the API does is used for, obviously, monitoring.  It is used to gather state, statistics, and logs from master, slave, or standalone Instant APs.  The architecture of this portion of the API is very similar to the cli output of "show" commands.  The currently supported commands are ```show clients``` and ```show aps```.  More will be added shortly.  There is also a generic ```show command``` method that will accept any CLI show commands and return unstructured text.
 
-The architecture of this portion of the API is very similar to the cli output of "show" commands.  The currently supported commands are ```show clients``` and ```show aps```.  More will be added shortly.
+Feel free to open an issue and request support for more commands if the structured output would be helpful.  I can also add support for different OS versions (at least back to 8.5) if it would be helpful.
 
     NOTE: The response from the API is currently unstructred text and requires parsing with RegEx.  
     This lends itself to breaking easily between versions.  My current testing has been against 8.6.
