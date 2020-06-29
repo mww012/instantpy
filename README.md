@@ -72,7 +72,7 @@ Login leveraging the @autologin decorator - In this scenario the decorator will 
 ```
 import instantpy
 
-vc = instant.InstantVC('user', 'password', 'VC IP')
+vc = instantpy.InstantVC('user', 'password', 'VC IP')
 
 result = vc.clients()
 ...
