@@ -125,3 +125,8 @@ result = vc.auth_server(template='auth_server_template.json')
 print(json.dumps(result, indent=4))
 vc.logout()
 ```
+
+
+---
+
+If this project has been helpful you can [buy me a coffee](https://www.buymeacoffee.com/mww012) but please don't feel obligated.
