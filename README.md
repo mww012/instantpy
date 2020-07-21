@@ -9,7 +9,7 @@ For full documentation, see [here](https://support.hpe.com/hpesc/public/docDispl
 The REST API is divided into three secions.  **Monitoring**, **Action**, and **Configuration**.  Details on each section are below.  Logging in and out is handled by the ```login()``` and ```logout()``` methods.  Logging in has a decorator method that will handle logging in if needed.  You will still need to handle logging out.  *See examples below.*
 
 ## Monitoring
-The monitoring endpoints of the API does is used for, obviously, monitoring.  It is used to gather state, statistics, and logs from master, slave, or standalone Instant APs.  The architecture of this portion of the API is very similar to the cli output of "show" commands.  The currently supported commands are ```show clients``` and ```show aps```.  More will be added shortly.  There is also a generic ```show command``` method that will accept any CLI show commands and return unstructured text.
+The monitoring endpoints of the API is used for, obviously, monitoring.  It is used to gather state, statistics, and logs from master, slave, or standalone Instant APs.  The architecture of this portion of the API is very similar to the cli output of "show" commands.  The currently supported commands are ```show clients``` and ```show aps```.  More will be added shortly.  There is also a generic ```show command``` method that will accept any CLI show commands and return unstructured text.
 
 Feel free to open an issue and request support for more commands if the structured output would be helpful.  I can also add support for different OS versions (at least back to 8.5) if it would be helpful.
 
