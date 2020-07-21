@@ -94,7 +94,7 @@ class InstantVC:
             dict -- Json formatted response from the VC
         """
         url = f"{self.baseurl}/show-cmd?iap_ip_addr={self.ip}&cmd=show clients&sid={self.sid}"
-        regex = r"^(?P<name>\S+)?\s+(?P<ip>(?:\d{1,3}\.){3}\d{1,3})\s+(?P<mac>(?:\S{2}:){5}\S{2})\s+(?P<os>\S+\s?\S+)?\s+(?P<essid>\S+)\s+(?P<ap>\S+)\s+(?P<channel>\d{1,3}[+-]?)\s+(?P<phy>[A-Z]{2})\s+(?P<role>\S+)\s+(?P<ipv6>[a-f0-9:]{5,29}|--)?\s+(?P<signal>\d{1,3})\((?P<signal_text>\S+)\)\s+(?P<speed>\d{1,3})\((?P<speed_text>\S+)\)"
+        regex = r"^(?P<name>\S+)?\s+(?P<ip>(?:\d{1,3}\.){3}\d{1,3})\s+(?P<mac>(?:\S{2}:){5}\S{2})\s+(?P<os>\S+\s?\S+)?\s+(?P<essid>\S+)\s+(?P<ap>\S+)\s+(?P<channel>\d{1,3}[+-ES]?)\s+(?P<phy>[A-Z]{2})\s+(?P<role>\S+)\s+(?P<ipv6>[a-f0-9:]{5,29}|--)?\s+(?P<signal>\d{1,3})\((?P<signal_text>\S+)\)\s+(?P<speed>\d{1,3})\((?P<speed_text>\S+)\)"
         response = self.session.get(url, verify=self.ssl_verify)
         devices_result = response.text.split("\\n")
         devices = {}
