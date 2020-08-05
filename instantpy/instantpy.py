@@ -1,6 +1,8 @@
 import json
 import requests
 import re
+from time import sleep
+
 
 
 def autologin(func):
@@ -18,12 +20,12 @@ def autologin(func):
 class InstantVC:
     def __init__(
         self,
+        ip,
         username,
         password,
-        ip,
         port=4343,
         template_basepath="templates/",
-        ssl_verify=False,
+        ssl_verify=True,
     ):
         """Initialize an instance of InstantVC.
 
@@ -57,16 +59,20 @@ class InstantVC:
         """
         url = f"{self.baseurl}/login"
         creds = {"user": self.username, "passwd": self.password}
-        with requests.Session() as session:
-            response = session.post(
-                url, json=creds, headers=self.headers, verify=self.ssl_verify
-            )
-            parsed = response.json()
-            if parsed["Status"] == "Success":
-                self.logged_in = True
-                self.sid = parsed["sid"]
-                self.session = session
-                self.params = f"sid={self.sid}"
+        try:
+            with requests.Session() as session:
+                response = session.post(
+                    url, json=creds, headers=self.headers, verify=self.ssl_verify
+                )
+                parsed = response.json()
+                if parsed["Status"] == "Success":
+                    self.logged_in = True
+                    self.sid = parsed["sid"]
+                    self.session = session
+                    self.params = f"sid={self.sid}"
+                return True
+        except requests.exceptions.ConnectionError as e:
+            return e
 
     def logout(self):
         """Log out of the VC"""
@@ -87,15 +93,18 @@ class InstantVC:
             self.params = None
 
     @autologin
-    def clients(self):
+    def clients(self, mac=None):
         """Get a list of clients currently on the VC.
 
         Returns:
             dict -- Json formatted response from the VC
         """
         url = f"{self.baseurl}/show-cmd?iap_ip_addr={self.ip}&cmd=show clients&sid={self.sid}"
-        regex = r"^(?P<name>\S+)?\s+(?P<ip>(?:\d{1,3}\.){3}\d{1,3})\s+(?P<mac>(?:\S{2}:){5}\S{2})\s+(?P<os>\S+\s?\S+)?\s+(?P<essid>\S+)\s+(?P<ap>\S+)\s+(?P<channel>\d{1,3}[+-ES]?)\s+(?P<phy>[A-Z]{2})\s+(?P<role>\S+)\s+(?P<ipv6>[a-f0-9:]{5,29}|--)?\s+(?P<signal>\d{1,3})\((?P<signal_text>\S+)\)\s+(?P<speed>\d{1,3})\((?P<speed_text>\S+)\)"
+        regex = r"^(?P<name>\S+)?\s+(?P<ip>(?:\d{1,3}\.){3}\d{1,3})\s+(?P<mac>(?:\S{2}:){5}\S{2})\s+(?P<os>\S+\s?\S+)?\s+(?P<essid>\S+)\s+(?P<ap>\S+)\s+(?P<channel>\d{1,3}[+-]?)\s+(?P<phy>[A-Z]{2})\s+(?P<role>\S+)\s+(?P<ipv6>[a-f0-9:]{5,29}|--)?\s+(?P<signal>\d{1,3})\((?P<signal_text>\S+)\)\s+(?P<speed>\d{1,3})\((?P<speed_text>\S+)\)"
         response = self.session.get(url, verify=self.ssl_verify)
+        if response.status_code != 200:
+            sleep(0.5)
+            response = self.session.get(url, verify=self.ssl_verify)
         devices_result = response.text.split("\\n")
         devices = {}
         for device in devices_result:
@@ -117,7 +126,10 @@ class InstantVC:
                     "speed": match.group("speed"),
                     "speed_text": match.group("speed_text"),
                 }
-        return devices
+        if mac is not None:
+            return devices.get(mac)
+        else:
+            return devices
 
     @autologin
     def aps(self):
@@ -129,8 +141,11 @@ class InstantVC:
         url = (
             f"{self.baseurl}/show-cmd?iap_ip_addr={self.ip}&cmd=show aps&sid={self.sid}"
         )
-        regex = r"^(?P<name>\S+)\s+(?P<ip>(?:\d{1,3}\.){3}\d{1,3})(?P<master>\*)?\s+(?P<mode>\S+)\s+(?P<spectrum>\S+)\s+(?P<clients>\S+)\s+(?P<type>\S+)\s+(?P<ipv6>[a-f0-9:]{5,29}|--)\s+(?P<meshrole>\S+)\s+(?P<zone>\S+)\s+(?P<serial>\S+)\s+(?P<r0chan>\S+)\s+(?P<r0pwr>\S+)\s+(?P<r0util>\S+?)\((?P<r0utiltxt>\S+?)\)\s+(?P<r0noiseflr>\S+?)\((?P<r0noiseflrtxt>\S+)\)\s+(?P<r1chan>\S+)\s+(?P<r1pwr>\S+)\s+(?P<r1util>\S+?)\((?P<r1utiltxt>\S+?)\)\s+(?P<r1noiseflr>\S+?)\((?P<r1noiseflrtxt>\S+)\)\s+(?P<r2chan>\S+)\s+(?P<r2pwr>\S+)\s+(?P<r2util>\S+?)(?:\((?P<r2utiltxt>\S+)\))?\s+(?P<r2noiseflr>\S+?)(?:\((?P<r2noiseflrtxt>\S+)\))?\s+(?P<needantcfg>\S+)\s+(?P<fromport>\S+)\s+(?P<cfgid>\S+)\s+(?P<cfgcsum>\S+)\s+(?P<extssidactive>\S+)\s+(?P<age>\S+)\s+(?P<linklocal>\S+)\s+(?P<uplink>\S+)['\"]"
+        regex = r"^(?P<name>\S+)\s+(?P<ip>(?:\d{1,3}\.){3}\d{1,3})(?P<master>\*)?\s+(?P<mode>\S+)\s+(?P<spectrum>\S+)\s+(?P<clients>\S+)\s+(?P<type>\S+)\s+(?P<ipv6>[a-f0-9:]{5,29}|--)\s+(?P<meshrole>\S+)\s+(?P<zone>\S+)\s+(?P<serial>\S+)\s+(?P<r0chan>\S+)\s+(?P<r0pwr>\S+)\s+(?P<r0util>\S+?)\((?P<r0utiltxt>\S+?)\)\s+(?P<r0noiseflr>\S+?)\((?P<r0noiseflrtxt>\S+)\)\s+(?P<r1chan>\S+)\s+(?P<r1pwr>\S+)\s+(?P<r1util>\S+?)\((?P<r1utiltxt>\S+?)\)\s+(?P<r1noiseflr>\S+?)\((?P<r1noiseflrtxt>\S+)\)\s+(?P<r2chan>\S+)\s+(?P<r2pwr>\S+)\s+(?P<r2util>\S+?)(?:\((?P<r2utiltxt>\S+)\))?\s+(?P<r2noiseflr>\S+?)(?:\((?P<r2noiseflrtxt>\S+)\))?\s+(?P<needantcfg>\S+)\s+(?P<fromport>\S+)\s+(?P<cfgid>\S+)\s+(?P<cfgcsum>\S+)\s+(?P<extssidactive>\S+)\s+(?P<age>\S+)\s+(?P<linklocal>\S+)\s+(?P<uplink>\S+)"
         response = self.session.get(url, verify=self.ssl_verify)
+        if response.status_code != 200:
+            sleep(0.5)
+            response = self.session.get(url, verify=self.ssl_verify)
         devices_result = response.text.split("\\n")
         devices = {}
         for device in devices_result:
