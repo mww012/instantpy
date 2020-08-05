@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="instantpy",
-    version="0.0.1",
+    version="0.0.2",
     author="Michael Wood",
     author_email="mww012@gmail.com",
     description="A Python wrapper for Aruba Instant REST API",
