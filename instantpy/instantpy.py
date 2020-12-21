@@ -20,9 +20,9 @@ def autologin(func):
 class InstantVC:
     def __init__(
         self,
-        ip,
         username,
         password,
+        ip,
         port=4343,
         template_basepath="templates/",
         ssl_verify=True,
@@ -37,7 +37,7 @@ class InstantVC:
         Keyword Arguments:
             port {int} -- Listening port of the VC webserver (default: {4343})
             template_basepath {str} -- Base path for template configs (default: {"templates/"})
-            ssl_verify {bool} -- Verify SSL certificate returned by VC (default: {False})
+            ssl_verify {bool} -- Verify SSL certificate returned by VC (default: {True})
         """
         self.username = username
         self.password = password
@@ -45,7 +45,7 @@ class InstantVC:
         self.ip = ip
         self.logged_in = False
         self.sid = None
-        self._session = None
+        self.session = requests.Session()
         self.baseurl = f"https://{ip}:{port}/rest"
         self.template_basepath = template_basepath
         self.ssl_verify = ssl_verify
@@ -61,6 +61,8 @@ class InstantVC:
         creds = {"user": self.username, "passwd": self.password}
         try:
             with requests.Session() as session:
+                if not self.ssl_verify:
+                    requests.packages.urllib3.disable_warnings()
                 response = session.post(
                     url, json=creds, headers=self.headers, verify=self.ssl_verify
                 )
