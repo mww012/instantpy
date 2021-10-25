@@ -649,7 +649,7 @@ class InstantVC:
         Returns:
             dict -- Json formmated response from VC
         """
-        url = f"{self.baseurl}/syslog-server"
+        url = f"{self.baseurl}/radio-profile-11a"
         with open(self.template_basepath + template, "r") as f:
             data = f.read()
         response = self.session.post(
